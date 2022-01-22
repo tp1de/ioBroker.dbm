@@ -1,98 +1,110 @@
 {
-	"common": {
-		"name": "dbm",
-		"version": "0.0.5",
-		"news": {
-			"0.0.5": {
-				"en": "initial release",
-				"de": "Erstveröffentlichung",
-				"ru": "Начальная версия",
-				"pt": "lançamento inicial",
-				"nl": "Eerste uitgave",
-				"fr": "Première version",
-				"it": "Versione iniziale",
-				"es": "Versión inicial",
-				"pl": "Pierwsze wydanie",
-				"zh-cn": "首次出版"
-			}
-		},
-		"title": "database maintenance",
-		"titleLang": {
-			"en": "database maintenance",
-			"de": "Datenbankpflege",
-			"ru": "обслуживание базы данных",
-			"pt": "manutenção de banco de dados",
-			"nl": "database onderhoud",
-			"fr": "entretien de la base de données",
-			"it": "manutenzione del database",
-			"es": "mantenimiento de base de datos",
-			"pl": "utrzymanie bazy danych",
-			"zh-cn": "数据库维护"
-		},
-		"desc": {
-			"en": "database maintenance (compress)",
-			"de": "Datenbankpflege (komprimieren)",
-			"ru": "обслуживание базы данных (сжатие)",
-			"pt": "manutenção de banco de dados (compactar)",
-			"nl": "database onderhoud (comprimeren)",
-			"fr": "maintenance de la base de données (compresser)",
-			"it": "manutenzione del database (comprimere)",
-			"es": "mantenimiento de base de datos (comprimir)",
-			"pl": "utrzymanie bazy danych (kompresja)",
-			"zh-cn": "数据库维护（压缩）"
-		},
-		"authors": [
-			"Thomas Petrick"
-		],
-		"keywords": [
-			"db",
-			"database",
-			"mysql",
-			"influxdb"
-		],
-		"license": "MIT",
-		"platform": "Javascript/Node.js",
-		"main": "main.js",
-		"icon": "dbm.jpg",
-		"enabled": true,
-		"extIcon": "https://raw.githubusercontent.com/tp1de/ioBroker.dbm/main/admin/dbm.jpg",
-		"readme": "https://github.com/tp1de/ioBroker.dbm/blob/main/README.md",
-		"loglevel": "info",
-		"mode": "daemon",
-		"type": "storage",
-		"compact": true,
-		"connectionType": "local",
-		"dataSource": "poll",
-		"materialize": true,
-		"materializeTab": true,
-		"adminTab": {
-			"singleton": true,
-			"name": {
-				"en": "database maintenance",
-				"de": "Datenbankpflege",
-				"ru": "обслуживание базы данных",
-				"pt": "manutenção de banco de dados",
-				"nl": "database onderhoud",
-				"fr": "entretien de la base de données",
-				"it": "manutenzione del database",
-				"es": "mantenimiento de base de datos",
-				"pl": "utrzymanie bazy danych",
-				"zh-cn": "数据库维护"
-			},
-			"link": "",
-			"fa-icon": "info"
-		},
-		"supportCustoms": true,
-		"dependencies": [
-			{
-				"js-controller": ">=2.0.0"
-			}
-		]
-	},
-	"native": {
-		"option1": true,
-		"option2": "42"
-	},
-	"objects": [],
-	"instanceObjects": []
+  "common": {
+    "name": "dbm",
+    "version": "0.0.6",
+    "news": {
+      "0.0.6": {
+        "en": "Test",
+        "de": "Prüfen",
+        "ru": "Контрольная работа",
+        "pt": "Teste",
+        "nl": "Test",
+        "fr": "Test",
+        "it": "Test",
+        "es": "Prueba",
+        "pl": "Test",
+        "zh-cn": "测试"
+      },
+      "0.0.5": {
+        "en": "initial release",
+        "de": "Erstveröffentlichung",
+        "ru": "Начальная версия",
+        "pt": "lançamento inicial",
+        "nl": "Eerste uitgave",
+        "fr": "Première version",
+        "it": "Versione iniziale",
+        "es": "Versión inicial",
+        "pl": "Pierwsze wydanie",
+        "zh-cn": "首次出版"
+      }
+    },
+    "title": "database maintenance",
+    "titleLang": {
+      "en": "database maintenance",
+      "de": "Datenbankpflege",
+      "ru": "обслуживание базы данных",
+      "pt": "manutenção de banco de dados",
+      "nl": "database onderhoud",
+      "fr": "entretien de la base de données",
+      "it": "manutenzione del database",
+      "es": "mantenimiento de base de datos",
+      "pl": "utrzymanie bazy danych",
+      "zh-cn": "数据库维护"
+    },
+    "desc": {
+      "en": "database maintenance (compress)",
+      "de": "Datenbankpflege (komprimieren)",
+      "ru": "обслуживание базы данных (сжатие)",
+      "pt": "manutenção de banco de dados (compactar)",
+      "nl": "database onderhoud (comprimeren)",
+      "fr": "maintenance de la base de données (compresser)",
+      "it": "manutenzione del database (comprimere)",
+      "es": "mantenimiento de base de datos (comprimir)",
+      "pl": "utrzymanie bazy danych (kompresja)",
+      "zh-cn": "数据库维护（压缩）"
+    },
+    "authors": [
+      "Thomas Petrick"
+    ],
+    "keywords": [
+      "db",
+      "database",
+      "mysql",
+      "influxdb"
+    ],
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "main": "main.js",
+    "icon": "dbm.jpg",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/tp1de/ioBroker.dbm/main/admin/dbm.jpg",
+    "readme": "https://github.com/tp1de/ioBroker.dbm/blob/main/README.md",
+    "loglevel": "info",
+    "mode": "daemon",
+    "type": "storage",
+    "compact": true,
+    "connectionType": "local",
+    "dataSource": "poll",
+    "materialize": true,
+    "materializeTab": true,
+    "adminTab": {
+      "singleton": true,
+      "name": {
+        "en": "database maintenance",
+        "de": "Datenbankpflege",
+        "ru": "обслуживание базы данных",
+        "pt": "manutenção de banco de dados",
+        "nl": "database onderhoud",
+        "fr": "entretien de la base de données",
+        "it": "manutenzione del database",
+        "es": "mantenimiento de base de datos",
+        "pl": "utrzymanie bazy danych",
+        "zh-cn": "数据库维护"
+      },
+      "link": "",
+      "fa-icon": "info"
+    },
+    "supportCustoms": true,
+    "dependencies": [
+      {
+        "js-controller": ">=2.0.0"
+      }
+    ]
+  },
+  "native": {
+    "option1": true,
+    "option2": "42"
+  },
+  "objects": [],
+  "instanceObjects": []
 }

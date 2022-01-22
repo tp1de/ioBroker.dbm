@@ -106,8 +106,9 @@ For later updates, the above procedure is not necessary. Just do the following:
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.0.6 (2022-01-22)
  Test
+
 ### 0.0.5 (2022-01-22)
 * Test
 
