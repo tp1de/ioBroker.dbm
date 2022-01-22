@@ -106,13 +106,15 @@ For later updates, the above procedure is not necessary. Just do the following:
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+* Test
 ### 0.0.2 (2022-01-22)
-* (Thomas Petrick) initial release
+* initial release
 
 ## License
 MIT License
 
-Copyright (c) 2022 Thomas Petrick <tpetrick@gmx.de>
+Copyright (c) 2022 Thomas Petrick
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
