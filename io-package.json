@@ -102,8 +102,7 @@
     ]
   },
   "native": {
-    "option1": true,
-    "option2": "42"
+    "db": "sql.0"
   },
   "objects": [],
   "instanceObjects": []
