@@ -18,10 +18,8 @@ database maintenance (compress)
 
 
 ## Changelog
-### **WORK IN PROGRESS**
-
 ### 0.0.3 (2022-01-22)
-Test
+* Test
 
 ### 0.0.2 (2022-01-22)
 * initial release
