@@ -13,14 +13,11 @@
 
 ## dbm adapter for ioBroker
 
-database maintenance (compress)
-
-
+database info & maintenance 
 
 ## Changelog
-### 0.0.3 (2022-01-22)
-* Test
 
+## **WORK IN PROGRESS** - test of release workflow
 ### 0.0.2 (2022-01-22)
 * initial release
 
