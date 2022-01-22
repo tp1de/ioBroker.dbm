@@ -16,7 +16,7 @@
 database info & maintenance 
 
 ## Changelog
-## **WORK IN PROGRESS** 
+### **WORK IN PROGRESS** 
 * test of release workflow
 ### 0.0.3 (2022-01-22)
 * initial release
