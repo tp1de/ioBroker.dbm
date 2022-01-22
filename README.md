@@ -16,12 +16,14 @@
 database info & maintenance 
 
 ## Changelog
-### **WORK IN PROGRESS** 
+### 0.0.4 (2022-01-22) 
 * test of release workflow
+
 ### 0.0.3 (2022-01-22)
 * initial release
 
 ### 0.0.2 (2022-01-22)
+
 ## License
 MIT License
 
