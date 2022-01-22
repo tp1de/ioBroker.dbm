@@ -106,10 +106,12 @@ For later updates, the above procedure is not necessary. Just do the following:
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### 0.0.3 (2022-01-22)
+### **WORK IN PROGRESS**
+* Test
+### 0.0.4 (2022-01-22)
 * Test
 
-### 0.0.2 (2022-01-22)
+### 0.0.3 (2022-01-22)
 * initial release
 
 ## License
