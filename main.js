@@ -10,6 +10,7 @@ const adapterName = require("./package.json").name.split(".").pop();
 const adapterIntervals = {};
 let adapter, unloaded = false;
 let db = "sql.0";
+const dbs = [];
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -53,19 +54,40 @@ if (module && module.parent) {
 
 async function main () {
 
-	db = adapter.config.db;
-	const dbs = "system.adapter."+db;
-	const obj = await adapter.getForeignObjectAsync(dbs);
-
-	const dbtype = obj.native.dbtype;
-	const schema = obj.native.dbname;
-	const dbn = dbtype+"-"+db.substring(db.length - 1);
-
 	await delete_states();
-	await init_states(dbn,obj.native);
-	await read_mysqlstatus(db,dbn,schema);
 
-	if (!unloaded) adapterIntervals.mysql = setInterval(function() {read_mysqlstatus(db,dbn,schema);}, 3600000); // every hour
+	const pattern = "system.adapter.sql.*.connected";
+	const states = await adapter.getForeignStatesAsync(pattern);
+	for (const id in states) {dbs.push(id);}
+
+	for (let i=0;i<dbs.length;i++) {
+		const state = await adapter.getForeignStateAsync(dbs[i]);
+     	if (state.val) {
+			const dbss = dbs[i].replace(/.connected/i, "");
+			db = dbss.replace(/system.adapter./i, "");
+			const obj = await adapter.getForeignObjectAsync(dbss);
+			const dbtype = obj.native.dbtype;
+			const schema = obj.native.dbname;
+			const dbn = dbtype+"-"+db.substring(db.length - 1);
+			await init_states(dbn,obj.native);
+			await read_mysqlstatus(db,dbn,schema);
+		}
+	}
+
+	if (!unloaded) adapterIntervals.mysql = setInterval(async function() {
+		for (let i=0;i<dbs.length;i++) {
+			const state = await adapter.getForeignStateAsync(dbs[i]);
+			 if (state.val) {
+				const dbss = dbs[i].replace(/.connected/i, "");
+				db = dbss.replace(/system.adapter./i, "");
+				const obj = await adapter.getForeignObjectAsync(dbss);
+				const dbtype = obj.native.dbtype;
+				const schema = obj.native.dbname;
+				const dbn = dbtype+"-"+db.substring(db.length - 1);
+				await read_mysqlstatus(db,dbn,schema);
+			}
+		}
+	}, 3600000); // every hour
 
 	//if (!unloaded) adapter.subscribeStates("*");
 
@@ -79,7 +101,7 @@ async function init_states(dbn,n) {
 	try {
 		init_state(dbn+".dbname",n.dbname,"string","database name","");
 		init_state(dbn+".host",n.host,"string","host","");
-		init_state(dbn+".port",n.port,"string","port","");
+		init_state(dbn+".port",n.port,"number","port","");
 		init_state(dbn+".maxConnections",n.maxConnections,"number","maximum connections","");
 		init_state(dbn+".encrypt",n.encrypt,"boolean","encryption","");
 
@@ -98,7 +120,7 @@ async function init_states(dbn,n) {
 async function init_state(state,val,type,name,unit) {
 	await adapter.setObjectNotExists(state,{type: "state",common: {type: type, name: name,
 		unit: unit, role: "value", read: true, write: false}, native: {}});
-	if (val != null ) adapter.setState(state, {ack: true, val: val});
+	if (val != null ) await adapter.setStateAsync(state, {ack: true, val: val});
 }
 
 async function read_mysqlstatus(db,dbn,schema) {
@@ -131,16 +153,22 @@ async function read_mysqlstatus(db,dbn,schema) {
 	q+= "max(FROM_UNIXTIME(`ts_number`.`ts` / 1000)) as max FROM (";
 	q+= schema+".ts_number JOIN "+schema+".datapoints) WHERE ts_number.id = datapoints.id ";
 	q+= "group by id order by count desc;";
-	adapter.sendTo(db, "query", q, function (result) {
-		if (result.error) {adapter.setState(state, {ack: true, val: {}});        }
-		else {adapter.setState(dbn+".size_ts_number", {ack: true, val: JSON.stringify(result.result)});}});
+	try {
+		adapter.sendTo(db, "query", q, function (result) {
+			if (result.error) {adapter.setState(state, {ack: true, val: {}});        }
+			else {adapter.setState(dbn+".size_ts_number", {ack: true, val: JSON.stringify(result.result)});}});
+	} catch(e) {adapter.log.error(e);}
 
 }
 
 function querystate(db,q,state) {
-	adapter.sendTo(db, "query", q, function (result) {
-		if (result.error) {adapter.setState(state, {ack: true, val: 0});        }
-		else {adapter.setState(state, {ack: true, val: result.result[0].result});}});
+	try{
+		adapter.sendTo(db, "query", q, function (result) {
+			if (result.error) {
+				adapter.setState(state, {ack: true, val: 0});        }
+			else {adapter.setState(state, {ack: true, val: result.result[0].result});}
+		});
+	} catch(e) {adapter.log.error(e);}
 }
 
 async function delete_states() {
