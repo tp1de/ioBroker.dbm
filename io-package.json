@@ -99,7 +99,8 @@
       {
         "js-controller": ">=2.0.0"
       }
-    ]
+    ],
+    "installedFrom": "tp1de/ioBroker.dbm#66f25a4e2f604c3fa87049b102a191850bddd615"
   },
   "native": {
     "db": "sql.0"

@@ -13,7 +13,10 @@
 
 ## dbm adapter for ioBroker
 
-database maintenance (info)
+database info and maintenance 
+
+The adapter provides information about database size, records per table etc.
+
 
 
 
