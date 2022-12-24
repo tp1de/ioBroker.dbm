@@ -61,31 +61,35 @@ async function main () {
 	for (const id in states) {dbs.push(id);}
 
 	for (let i=0;i<dbs.length;i++) {
-		const state = await adapter.getForeignStateAsync(dbs[i]);
-     	if (state.val) {
-			const dbss = dbs[i].replace(/.connected/i, "");
-			db = dbss.replace(/system.adapter./i, "");
-			const obj = await adapter.getForeignObjectAsync(dbss);
-			const dbtype = obj.native.dbtype;
-			const schema = obj.native.dbname;
-			const dbn = dbtype+"-"+db.substring(db.length - 1);
-			await init_states(dbn,obj.native);
-			await read_mysqlstatus(db,dbn,schema);
-		}
-	}
-
-	if (!unloaded) adapterIntervals.mysql = setInterval(async function() {
-		for (let i=0;i<dbs.length;i++) {
+		try {
 			const state = await adapter.getForeignStateAsync(dbs[i]);
-			 if (state.val) {
+			if (state.val) {
 				const dbss = dbs[i].replace(/.connected/i, "");
 				db = dbss.replace(/system.adapter./i, "");
 				const obj = await adapter.getForeignObjectAsync(dbss);
 				const dbtype = obj.native.dbtype;
 				const schema = obj.native.dbname;
 				const dbn = dbtype+"-"+db.substring(db.length - 1);
+				await init_states(dbn,obj.native);
 				await read_mysqlstatus(db,dbn,schema);
 			}
+		} catch(e) {}
+	}
+
+	if (!unloaded) adapterIntervals.mysql = setInterval(async function() {
+		for (let i=0;i<dbs.length;i++) {
+			try {
+				const state = await adapter.getForeignStateAsync(dbs[i]);
+				if (state.val) {
+					const dbss = dbs[i].replace(/.connected/i, "");
+					db = dbss.replace(/system.adapter./i, "");
+					const obj = await adapter.getForeignObjectAsync(dbss);
+					const dbtype = obj.native.dbtype;
+					const schema = obj.native.dbname;
+					const dbn = dbtype+"-"+db.substring(db.length - 1);
+					await read_mysqlstatus(db,dbn,schema);
+				}
+			} catch(e) {}
 		}
 	}, 3600000); // every hour
 
